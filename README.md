@@ -1,2 +1,2 @@
 # api
-Api will be written as clean architecture !
+This api will be written as clean architecture
