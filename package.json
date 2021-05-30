@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/middle-home-service/api#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "concurrently": "^6.2.0",
     "eslint": "^7.27.0",
     "jest": "^27.0.3",
