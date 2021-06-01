@@ -1,7 +1,7 @@
 class Test {
-    public retene: String;
+    public retene: string;
     constructor() {
-        this.retene = 324;
+        this.retene = '324';
     }
 }
 
