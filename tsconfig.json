@@ -6,7 +6,10 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "outDir": "dist",
-        "baseUrl": "."
+        "baseUrl": "./",
+        "paths": {
+            "@todo.db": ["./src/database"]
+        }
     },
     "include": [
         "src/**/*"

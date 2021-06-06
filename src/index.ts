@@ -1,13 +1,4 @@
 import 'module-alias/register';
-import dotenv from 'dotenv';
-import { Client } from 'pg';
+import 'reflect-metadata';
 
-let pgdb;
-
-dotenv.config();
-
-pgdb = new Client({
-    user: "deployer",
-    database: "mona"
-});
-
+// TODO: Implement multiple database support.
