@@ -1,34 +1,31 @@
-import { IDatabaseConnectionInfo} from '../interfaces';
-import { Connection } from './connection';
+import { Client } from 'pg';
+import { IDatabaseConfigs } from '_configs/interfaces';
+import { IDatabaseConnectionInfo } from '../interfaces';
 
-export abstract class Database {
-    constructor(connectionInformation: IDatabaseConnectionInfo) {
-        this.information = connectionInformation;
+export class Database {
+    constructor(connection: Client, config: IDatabaseConfigs) {
+        this.connection = connection;
     }
 
-    // Private and Protected methods
-    protected _connection: Connection;
-    protected _information: IDatabaseConnectionInfo;
+    // Private and protected properties.
+    private _connection: Client;
 
-    // Public Properties even getters and setters.
-    get connection(): Connection {
+    // Public properties even getters and setters.
+    get connection(): Client {
         return this._connection;
     }
-    set connection(connection: Connection) {
+    set connection(connection: Client) {
         this._connection = connection;
     }
-    get information(): IDatabaseConnectionInfo {
-        return this._information;
-    }
-    set information(connection: IDatabaseConnectionInfo) {
-        this._information = connection;
-    }
 
+    // Private or protected methods.
     // Public methods.
-    async connect(): Promise<Connection> {
-        const innerConnection = new Connection(this.information);
-        return this._connection;
+    public async connect(information: IDatabaseConnectionInfo): Promise<void> {
+        const connection: unknown = await this.connection.connect();
+        const res = await this.connection.query('SELECT $1::text as message', ['Postgres is connected'])
+    }
+    public disconnect(): void {
+        this.connection.end();
     }
 
-    abstract disconnect(): void;
 }

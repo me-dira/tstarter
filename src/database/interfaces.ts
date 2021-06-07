@@ -1,9 +1,10 @@
-import { Connection } from "./classes/connection";
 
 export interface IDatabaseExtractedInfo {
-    provider: string;
-    uri: string;
-    port: number;
+    url: string;
+    port: string;
+    database: string;
+    username: string;
+    password: string;
 };
 
 export interface IDatabaseConnectionInfo {
@@ -14,7 +15,11 @@ export interface IDatabaseConnectionInfo {
     extracted?: IDatabaseExtractedInfo;
 }
 
-export interface IDatabaseConnection<T extends Connection> {
-    provider: string;
-    connection: T;
+export interface IDatabaseDetectorObject {
+    url?: string;
+    port?: string;
+}
+
+export interface IDatabaseConfigs {
+    constr: string;
 }

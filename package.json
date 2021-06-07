@@ -30,15 +30,18 @@
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/pg": "^8.6.0",
+    "@types/validator": "^13.1.3",
     "concurrently": "^6.2.0",
     "eslint": "^7.27.0",
-    "jest": "^27.0.3",
+    "jest": "^27.0.4",
     "nodemon": "^2.0.7",
+    "ts-jest": "^27.0.3",
     "tslint": "^6.1.3",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "validator": "^13.6.0"
   },
   "_moduleAliases": {
-    "@root": ".",
+    "@todo.conf": "./dist/_configs/database",
     "@todo.db": "./dist/database",
     "@my_module": "lib/some-file.js",
     "something": "src/foo"
