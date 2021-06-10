@@ -1,4 +1,4 @@
-import { PostgreSQLDatabase } from '../dbcore/postgres';
+import { PostgreSQLDatabase } from '../cores/postgres';
 const dbConnectionChecker = (pg: PostgreSQLDatabase, done: (income?: any[]) => void) => {
     pg.isConnected()
         .then(isConnected => {
