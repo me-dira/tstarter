@@ -1,14 +1,15 @@
+import { EventEmitter } from 'events';
 
 export interface IDatabaseExtractedInfo {
-    url: string;
+    host: string;
     port: string;
     database: string;
-    username: string;
+    user: string;
     password: string;
 };
 
 export interface IDatabaseConnectionInfo {
-    username: string;
+    user: string;
     password: string;
     database: string;
     constr: string;
@@ -22,4 +23,15 @@ export interface IDatabaseDetectorObject {
 
 export interface IDatabaseConfigs {
     constr: string;
+}
+
+export interface IDatabaseConstructorProperties <T>{
+    connection: T;
+    config: IDatabaseConfigs;
+    event: EventEmitter
+}
+
+export interface IQueryObject {
+    query: string;
+    values?: any | any[];
 }

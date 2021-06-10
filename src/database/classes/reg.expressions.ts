@@ -1,1 +1,0 @@
-export const checkConstr = /(\burl\b)->([a-z]+):(\bport\b)->([0-9]...):(\bdatabase\b)->([a-z]+):(\busername\b)->([a-z]+):(\bpassword\b)->().*/gmi;

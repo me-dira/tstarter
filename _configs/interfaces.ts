@@ -1,4 +1,4 @@
 export interface IDatabaseConfigs {
-    inuse: 'postgres' | 'mongodb';
+    inuse?: 'postgres' | 'mongodb';
     constr: string;
 }

@@ -11,7 +11,7 @@
             "@todo.db": [
                 "./src/database"
             ],
-            "@todo.db.conf": [
+            "@todo/db-conf": [
                 "./_configs/database"
             ]
         }

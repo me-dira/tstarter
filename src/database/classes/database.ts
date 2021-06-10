@@ -1,31 +1,41 @@
-import { Client } from 'pg';
 import { IDatabaseConfigs } from '_configs/interfaces';
-import { IDatabaseConnectionInfo } from '../interfaces';
+import { EventEmitter } from 'events';
+import { IDatabaseConstructorProperties, IQueryObject } from '../interfaces';
 
-export class Database {
-    constructor(connection: Client, config: IDatabaseConfigs) {
-        this.connection = connection;
+export abstract class Database<T> extends EventEmitter{
+    constructor(opts: IDatabaseConstructorProperties<T>) {
+        super();
+        this.connection = opts.connection;
+        this.event = opts.event;
+        this.config = opts.config;
     }
 
     // Private and protected properties.
-    private _connection: Client;
+    private _connection: T;
+    private _event: EventEmitter;
+    private _config: IDatabaseConfigs;
 
     // Public properties even getters and setters.
-    get connection(): Client {
+    get connection(): T {
         return this._connection;
     }
-    set connection(connection: Client) {
+    set connection(connection: T) {
         this._connection = connection;
+    }
+    get event(): EventEmitter {
+        return this._event;
+    }
+    set event(event: EventEmitter) {
+        this._event = event;
+    }
+    get config(): IDatabaseConfigs {
+        return this._config;
+    }
+    set config(config: IDatabaseConfigs) {
+        this._config = config;
     }
 
     // Private or protected methods.
-    // Public methods.
-    public async connect(information: IDatabaseConnectionInfo): Promise<void> {
-        const connection: unknown = await this.connection.connect();
-        const res = await this.connection.query('SELECT $1::text as message', ['Postgres is connected'])
-    }
-    public disconnect(): void {
-        this.connection.end();
-    }
-
+    abstract disconnect(): void;
+    abstract query(query: IQueryObject): Promise<any>;
 }
