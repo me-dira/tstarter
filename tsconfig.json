@@ -6,10 +6,19 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "outDir": "dist",
-        "baseUrl": "."
+        "baseUrl": "./",
+        "paths": {
+            "@todo.db": [
+                "./src/database"
+            ],
+            "@todo/db-conf": [
+                "./_configs/database"
+            ]
+        }
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "_configs/**/*"
     ],
     "exclude": [
         "node_modules",
