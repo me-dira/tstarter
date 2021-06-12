@@ -1,8 +1,8 @@
-import { Model, DataTypes, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from 'sequelize';
 
-class User extends Model { }
+class UserModel extends Model { }
 const makeUserModel = (databaseObject: Sequelize) => {
-    User.init({
+    UserModel.init({
         firstName: {
             allowNull: true,
             type: DataTypes.STRING,
@@ -29,14 +29,15 @@ const makeUserModel = (databaseObject: Sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
-    }, {
-        sequelize: databaseObject,
-        modelName: 'User',
-        tableName: 'users',
-        timestamps: true
-    });
+    },
+        {
+            sequelize: databaseObject,
+            modelName: 'User',
+            tableName: 'users',
+            timestamps: true
+        });
 
-    return User;
+    return UserModel;
 }
 
-export { makeUserModel };
+export { makeUserModel, UserModel };

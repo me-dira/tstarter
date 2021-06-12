@@ -1,14 +1,14 @@
-import { Sequelize } from "sequelize/types";
 import { ICrudCreateMethod, ICrudOptions, ICrudReadMethod, ICrudUpdateMethod } from "../../interfaces/icrud";
 import { ICrudDeleteMethod } from "../../interfaces/icrud";
 
-export abstract class CrudOperation <V extends object, ID extends object> {
-    constructor(database: Sequelize, opts?: ICrudOptions) {
+export abstract class CrudOperation<V extends object, ID extends object, M> {
+    constructor(model: M, opts?: ICrudOptions) {
+        this.model = model;
         this.options = opts;
     }
 
     private _options: ICrudOptions;
-    private _database: Sequelize;
+    private _model: M;
 
     set options(opts: ICrudOptions) {
         this._options = opts;
@@ -17,16 +17,15 @@ export abstract class CrudOperation <V extends object, ID extends object> {
         return this._options;
     }
 
-    /** Database getter and setter */
-    set database(database: Sequelize) {
-        this._database = database;
+    set model(model: M) {
+        this._model = model;
     }
-    get database(): Sequelize {
-        return this._database;
+    get model(): M {
+        return this._model;
     }
 
-    abstract read(object: ICrudReadMethod<V, ID>): V | V[];
-    abstract create(object: ICrudCreateMethod<V>): V | V[];
-    abstract delete(object: ICrudDeleteMethod<V>): V;
-    abstract update(object: ICrudUpdateMethod<V, ID>): V;
+    abstract read(object: ICrudReadMethod<V, ID>): Promise<V | V[]>;
+    abstract create(object: ICrudCreateMethod<V>): Promise<V | V[]>;
+    abstract delete(object: ICrudDeleteMethod<V, ID>): Promise<V>;
+    abstract update(object: ICrudUpdateMethod<V, ID>): Promise<V>;
 }

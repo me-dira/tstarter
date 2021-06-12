@@ -6,8 +6,8 @@ export interface ICrudCreateMethod<T extends object> {
     opts?: ICrudOptions;
 }
 
-export interface ICrudDeleteMethod<V extends object> {
-    identifier: V;
+export interface ICrudDeleteMethod<V extends object, ID> {
+    identifier: ID;
     opts?: ICrudOptions;
 }
 
@@ -26,4 +26,5 @@ export interface ICrudOptions {
     filter?: string | string[];
     append?: object | object [];
     sanitize?: (value: string) => string;
+    dryPick?: boolean;
 }
