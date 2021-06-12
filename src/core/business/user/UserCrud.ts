@@ -53,7 +53,7 @@ class UserCrud extends CrudOperation<IUser, IUserIdentifiers, ModelCtor<Model<an
             identifier: 'monaliza',
             createdAt: Date.now() as unknown as Date,
             updatedAt: Date.now() as unknown as Date
-        }
+        };
     }
 
     /**
