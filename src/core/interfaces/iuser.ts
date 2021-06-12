@@ -1,6 +1,14 @@
 export interface IUser {
-    id: number;
-    first_name?: string;
-    last_name?: string;
+    firstName?: string;
+    lastName?: string;
     identifier: string;
+    email: string;
+    password: string;
+    softDelete?: boolean;
 };
+
+export interface IUserIdentifiers {
+    id: number;
+    userName?: string;
+    email?: string;
+}
